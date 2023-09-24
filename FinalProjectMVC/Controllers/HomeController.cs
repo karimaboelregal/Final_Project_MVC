@@ -1,5 +1,7 @@
 ﻿using FinalProjectMVC.Models;
 using Microsoft.AspNetCore.Mvc;
+using Models.Models;
+using Services.Interfaces;
 using System.Diagnostics;
 
 namespace FinalProjectMVC.Controllers
@@ -7,15 +9,21 @@ namespace FinalProjectMVC.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly ICategoryService categoryService;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, ICategoryService _categoryService)
         {
             _logger = logger;
+            categoryService = _categoryService;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> IndexAsync()
         {
-            return View();
+            LayoutViewModel model = new LayoutViewModel();
+            model.categories = await categoryService.GetCategories();
+
+
+            return View(model);
         }
 
         public IActionResult Privacy()
