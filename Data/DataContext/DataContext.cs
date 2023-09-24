@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using Models.Models;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
+using System.Reflection.Emit;
 
 namespace E_Commerce.Data.Context
 {
@@ -28,7 +29,7 @@ namespace E_Commerce.Data.Context
         }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("Server=.;Database=ECommerce1;Integrated Security=true;TrustServerCertificate=True");
+            optionsBuilder.UseSqlServer("server=.;database=FinalProjectDB;trusted_connection=true;TrustServerCertificate=true;");
         }
 
         protected override void OnModelCreating(ModelBuilder builder)
@@ -39,6 +40,7 @@ namespace E_Commerce.Data.Context
             builder.Entity<Order>().Property(o => o.TotalPrice).HasColumnType("money");
             builder.Entity<OrderDetails>().Property(od => od.UnitPrice).HasColumnType("money");
             builder.Entity<Product>().Property(p => p.UnitPrice).HasColumnType("money");
+            builder.Entity<Product>().HasOne(p => p.Category).WithMany(c => c.Products).HasForeignKey(p => p.CategoryId);
             base.OnModelCreating(builder);
         }
         

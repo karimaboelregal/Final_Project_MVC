@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Data.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20230912101410_second")]
+    [Migration("20230924091625_second")]
     partial class second
     {
         /// <inheritdoc />
@@ -20,7 +20,7 @@ namespace Data.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "7.0.10")
+                .HasAnnotation("ProductVersion", "7.0.11")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
@@ -77,7 +77,7 @@ namespace Data.Migrations
                     b.ToTable("AspNetRoleClaims", (string)null);
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.UserClaim<System.Guid>", b =>
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<System.Guid>", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -101,7 +101,7 @@ namespace Data.Migrations
                     b.ToTable("AspNetUserClaims", (string)null);
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.UserLogin<System.Guid>", b =>
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<System.Guid>", b =>
                 {
                     b.Property<string>("LoginProvider")
                         .HasColumnType("nvarchar(450)");
@@ -122,7 +122,7 @@ namespace Data.Migrations
                     b.ToTable("AspNetUserLogins", (string)null);
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.UserRole<System.Guid>", b =>
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<System.Guid>", b =>
                 {
                     b.Property<Guid>("UserId")
                         .HasColumnType("uniqueidentifier");
@@ -137,7 +137,7 @@ namespace Data.Migrations
                     b.ToTable("AspNetUserRoles", (string)null);
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.UserToken<System.Guid>", b =>
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<System.Guid>", b =>
                 {
                     b.Property<Guid>("UserId")
                         .HasColumnType("uniqueidentifier");
@@ -237,6 +237,10 @@ namespace Data.Migrations
 
                     b.Property<DateTime>("CreatedOn")
                         .HasColumnType("datetime2");
+
+                    b.Property<string>("Image")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
@@ -373,7 +377,7 @@ namespace Data.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.UserClaim<System.Guid>", b =>
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<System.Guid>", b =>
                 {
                     b.HasOne("Models.Models.User", null)
                         .WithMany()
@@ -382,7 +386,7 @@ namespace Data.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.UserLogin<System.Guid>", b =>
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<System.Guid>", b =>
                 {
                     b.HasOne("Models.Models.User", null)
                         .WithMany()
@@ -391,7 +395,7 @@ namespace Data.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.UserRole<System.Guid>", b =>
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<System.Guid>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole<System.Guid>", null)
                         .WithMany()
@@ -406,7 +410,7 @@ namespace Data.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.UserToken<System.Guid>", b =>
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<System.Guid>", b =>
                 {
                     b.HasOne("Models.Models.User", null)
                         .WithMany()
@@ -448,7 +452,7 @@ namespace Data.Migrations
             modelBuilder.Entity("Models.Models.Product", b =>
                 {
                     b.HasOne("Models.Models.Category", "Category")
-                        .WithMany()
+                        .WithMany("Products")
                         .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -472,6 +476,11 @@ namespace Data.Migrations
                         .HasForeignKey("Models.Models.Customer", "Id")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("Models.Models.Category", b =>
+                {
+                    b.Navigation("Products");
                 });
 #pragma warning restore 612, 618
         }
