@@ -12,5 +12,6 @@ namespace Services.Interfaces
     public interface IProductService
     {
         Task<List<Product>> GetProductList();
+        Task<List<Product>> GetProductsFromCategory(string id);
     }
 }

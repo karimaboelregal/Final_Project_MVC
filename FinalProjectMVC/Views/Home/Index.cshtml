@@ -1,8 +1,27 @@
-﻿@{
+﻿@using Models.Models;
+@model ProductViewModel
+@{
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="container pt-5">
+    <div class="row pb-3 ">
+        @foreach (Product product in Model.products)
+        {
+            <div class="col-md-2 p-2 offset-1 pt-4" style="height: 350px">
+                <img src="@product.Image" alt="" class="img-fluid h-75 w-100 pb-2" style="filter: brightness(95%);">
+                <div class="d-flex flex-column">
+                    <span class="text-blue pr-3 font-weight-bold Manrope d-block">@product.NameEn</span>
+                    <span class="text-muted small font-weight-light sans d-block">EGP @product.UnitPrice</span>
+                </div>
+                <div class="d-flex justify-content-end pt-2">
+                    <button class="btn btn-cart" >
+                        <i class="fa-solid fa-cart-shopping"></i>
+                        Add to cart
+                    </button>
+                </div>
+            </div>
+        }
+
+    </div>
 </div>

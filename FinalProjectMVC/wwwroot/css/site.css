@@ -28,13 +28,32 @@ body {
     text-transform: uppercase;
 }
 
-.custom-button:hover {
-    background: white;
-    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
-}
+    .custom-button:hover {
+        background: white;
+        box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    }
 
 
 .drop-button:focus, .drop-button:active:focus, .drop-button.active:focus,
 .drop-button.focus, .drop-button:active.focus, .drop-button.active.focus {
+    box-shadow: none;
+}
+
+
+.dropdown-menu a:hover {
+    background-color: #feee00;
+}
+
+.btn-cart {
+    background-color: #feee00;
+}
+
+.btn-cart:hover {
+    background-color: #fee00f;
+}
+
+.btn-cart:focus, .btn-cart:active:focus, .btn-cart.active:focus,
+.btn-cart.focus, .btn-cart:active.focus, .btn-cart.active.focus {
+    outline: none;
     box-shadow: none;
 }
