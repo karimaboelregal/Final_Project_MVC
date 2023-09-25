@@ -9,5 +9,6 @@ namespace Services.Interfaces
 {
     public interface ICategoryService
     {
+        public Task<List<Category>> GetCategories();
     }
 }
