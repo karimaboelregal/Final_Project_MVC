@@ -10,20 +10,30 @@ namespace FinalProjectMVC.Controllers
     {
         private readonly ILogger<HomeController> _logger;
         private readonly ICategoryService categoryService;
+        private readonly IProductService productService;
 
-        public HomeController(ILogger<HomeController> logger, ICategoryService _categoryService)
+        public HomeController(ILogger<HomeController> logger, ICategoryService _categoryService, IProductService _productService)
         {
             _logger = logger;
             categoryService = _categoryService;
+            productService = _productService;
         }
 
         public async Task<IActionResult> IndexAsync()
         {
-            LayoutViewModel model = new LayoutViewModel();
+            ProductViewModel model = new ProductViewModel();
             model.categories = await categoryService.GetCategories();
-
+            model.products = await productService.GetProductList();
 
             return View(model);
+        }
+        [HttpGet]
+        public async Task<IActionResult> Category(string id)
+        {
+            ProductViewModel model = new ProductViewModel();
+            model.categories = await categoryService.GetCategories();
+            model.products = await productService.GetProductsFromCategory(id);
+            return View("Index", model);
         }
 
         public IActionResult Privacy()
