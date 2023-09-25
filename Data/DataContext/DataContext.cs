@@ -27,10 +27,10 @@ namespace E_Commerce.Data.Context
         public DataContext(DbContextOptions<DataContext> options) : base(options)
         {
         }
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            optionsBuilder.UseSqlServer("server=.;database=FinalProjectDB;trusted_connection=true;TrustServerCertificate=true;");
-        }
+        //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        //{
+        //    optionsBuilder.UseSqlServer("server=.;database=FinalProject;trusted_connection=true;TrustServerCertificate=true;");
+        //}
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
