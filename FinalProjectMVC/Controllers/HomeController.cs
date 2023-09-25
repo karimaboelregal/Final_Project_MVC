@@ -40,6 +40,11 @@ namespace FinalProjectMVC.Controllers
         {
             return View();
         }
+        public ActionResult ModalAction(int Id)
+        {
+            ViewBag.Id = Id;
+            return PartialView("_LoginPartial");
+        }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
