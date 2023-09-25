@@ -15,6 +15,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
 using Models.Models;
+using FinalProjectMVC.Models;
 
 namespace FinalProjectMVC.Areas.Identity.Pages.Account
 {
@@ -22,11 +23,13 @@ namespace FinalProjectMVC.Areas.Identity.Pages.Account
     {
         private readonly SignInManager<User> _signInManager;
         private readonly ILogger<LoginModel> _logger;
+        private readonly LayoutViewModel layoutViewModel;
 
         public LoginModel(SignInManager<User> signInManager, ILogger<LoginModel> logger)
         {
             _signInManager = signInManager;
             _logger = logger;
+
         }
 
         /// <summary>
