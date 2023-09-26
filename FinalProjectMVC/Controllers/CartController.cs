@@ -1,6 +1,7 @@
 ﻿using FinalProjectMVC.Models;
 using Microsoft.AspNetCore.Mvc;
 using Models.Models;
+using Newtonsoft.Json;
 using Services.Interfaces;
 using Services.Repository;
 using System.Text.Json;
@@ -12,8 +13,8 @@ namespace FinalProjectMVC.Controllers
         private readonly IProductService _productService;
         private readonly ICategoryService _categoryService;
 
-        public CartController(IProductService productService, ICategoryService categoryService) 
-        { 
+        public CartController(IProductService productService, ICategoryService categoryService)
+        {
             _productService = productService;
             _categoryService = categoryService;
         }
@@ -35,7 +36,7 @@ namespace FinalProjectMVC.Controllers
             var sessionString = HttpContext.Session.GetString("cart");
             if (sessionString is not null)
             {
-                return JsonSerializer.Deserialize<Cart>(sessionString)!;
+                return System.Text.Json.JsonSerializer.Deserialize<Cart>(sessionString)!;
             }
 
 
@@ -68,7 +69,7 @@ namespace FinalProjectMVC.Controllers
                 {
                     cart.Items.Add(new Item(product, 1));
                 }
-                HttpContext.Session.SetString("cart", JsonSerializer.Serialize(cart));
+                HttpContext.Session.SetString("cart", System.Text.Json.JsonSerializer.Serialize(cart));
 
 
 
@@ -80,6 +81,29 @@ namespace FinalProjectMVC.Controllers
             }
 
             return NotFound();
+        }
+        [HttpPost]
+        public async void IncrementItem(string i)
+        {
+            Cart cart = await GetCartFromSession();
+            Guid id = Guid.Parse(i);
+            cart.Items.Find(item => item.Product.Id == id).ProductCount++;
+            HttpContext.Session.SetString("cart", System.Text.Json.JsonSerializer.Serialize(cart));
+        }
+        [HttpPost]
+        public async void DecrementItem(string i)
+        {
+            Cart cart = await GetCartFromSession();
+            Guid id = Guid.Parse(i);
+            Item item = cart.Items.Find(item => item.Product.Id == id);
+            if (item.ProductCount == 1)
+            {
+                cart.Items.Remove(item);
+            } else
+            {
+                item.ProductCount--;
+            }
+            HttpContext.Session.SetString("cart", System.Text.Json.JsonSerializer.Serialize(cart));
         }
     }
 }

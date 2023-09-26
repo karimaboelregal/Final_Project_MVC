@@ -1,16 +1,24 @@
-﻿@using Models.Models;
+﻿@using Microsoft.AspNetCore.Identity;
+@using Models.Models;
 @model ProductViewModel
+
+
+
+
+
 @{
     ViewData["Title"] = "Home Page";
 }
 <div class="container pt-5">
     <div class="row pb-3 ">
-
-        @foreach (Product product in Model.products)
-
+        @if (!User.Identity.IsAuthenticated)
         {
-            <div class="col-md-2 p-2 offset-1 pt-4 mb-5" style="height: 350px">
-                <form method="post" class="mb-2" asp-controller="" asp-action="AddToCart">
+
+            foreach (Product product in Model.products)
+
+            {
+                <div class="col-md-2 p-2 offset-1 pt-4 mb-5" style="height: 350px">
+
                     <input type="hidden" name="id" value="@product.Id" />
                     <img src="@product.Image" alt="" class="img-fluid h-75 w-100 pb-2" style="filter: brightness(95%);">
                     <div class="d-flex flex-column">
@@ -18,52 +26,43 @@
                         <span class="text-muted small font-weight-light sans d-block">EGP @product.UnitPrice</span>
                     </div>
                     <div class="d-flex justify-content-end pt-2">
-                        <button class="btn btn-cart" type="submit">
+                        <a data-toggle="modal" class="btn btn-cart" data-target="#UserLogin" style="text-decoration: none">
                             <i class="fa-solid fa-cart-shopping"></i>
                             Add to cart
-                        </button>
+                        </a>
                     </div>
-                </form>
-            </div>
+                </div>
+
+            }
+        }
+        else
+        {
+            foreach (Product product in Model.products)
+
+            {
+                <div class="col-md-2 p-2 offset-1 pt-4 mb-5" style="height: 350px">
+
+                    <form method="post" class="mb-2" asp-controller="" asp-action="AddToCart">
+                        <input type="hidden" name="id" value="@product.Id" />
+                        <img src="@product.Image" alt="" class="img-fluid h-75 w-100 pb-2" style="filter: brightness(95%);">
+                        <div class="d-flex flex-column">
+                            <span class="text-blue pr-3 font-weight-bold Manrope d-block">@product.NameEn</span>
+                            <span class="text-muted small font-weight-light sans d-block">EGP @product.UnitPrice</span>
+                        </div>
+                        <div class="d-flex justify-content-end pt-2">
+                            <button class="btn btn-cart" type="submit">
+                                <i class="fa-solid fa-cart-shopping"></i>
+                                Add to cart
+                            </button>
+                        </div>
+                    </form>
+                </div>
+
+            }
 
         }
-
 
     </div>
 </div>
 
 
-<!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-    Launch demo modal
-</button>
-<a asp-action="ModalAction"
-   asp-controller="Home"
-   asp-route-id="1"
-   data-target="#exampleModal"
-   data-toggle="modal">
-    Log in
-</a>
-
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
-            </div>
-        </div>
-    </div>
-
-
-
-<!-- Modal -->
