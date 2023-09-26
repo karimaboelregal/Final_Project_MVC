@@ -12,7 +12,7 @@ namespace FinalProjectMVC.Controllers
     {
         private readonly UserManager<User> _userManager;
         private readonly SignInManager<User> _signInManager;
-       
+
 
         public UserAuthController(DataContext context,
                                   UserManager<User> userManager,
@@ -20,7 +20,7 @@ namespace FinalProjectMVC.Controllers
         {
             _userManager = userManager;
             _signInManager = signInManager;
-          
+
         }
 
         [AllowAnonymous]
@@ -30,7 +30,7 @@ namespace FinalProjectMVC.Controllers
         public async Task<IActionResult> Login(LoginModel loginModel)
         {
             ProductViewModel p = new ProductViewModel();
-            p.loginmodel = loginModel;
+            p.login = loginModel;
 
 
             var result = await _signInManager.PasswordSignInAsync(loginModel.FullName,
@@ -40,14 +40,14 @@ namespace FinalProjectMVC.Controllers
 
 
 
-            
+
             return PartialView("_UserLoginPartial", p);
 
         }
 
         [AllowAnonymous]
         [HttpPost]
-       
+
         public async Task<IActionResult> Logout(string returnUrl = null)
         {
             await _signInManager.SignOutAsync();
@@ -68,24 +68,24 @@ namespace FinalProjectMVC.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> RegisterUser(RegistrationModel registrationModel)
         {
-          
 
-       
-                User user = new User
-                {
-                   FullName = registrationModel.FullName,  
-                   Email = registrationModel.Email,
-                   UserName=registrationModel.FullName,
-                   
-                   
-                   
 
-                };
-         
+
+            User user = new User
+            {
+                FullName = registrationModel.FullName,
+                Email = registrationModel.Email,
+                UserName = registrationModel.FullName,
+
+
+
+
+            };
+
             var result = await _userManager.CreateAsync(user, registrationModel.Password);
             var f = 2;
             ProductViewModel p = new ProductViewModel();
-            p.registrationmodel = registrationModel;
+            p.registration = registrationModel;
             if (result.Succeeded)
             {
 
@@ -97,7 +97,7 @@ namespace FinalProjectMVC.Controllers
                 //    await AddCategoryToUser(user.Id, registrationModel.CategoryId);
 
                 //}
-               
+
                 return PartialView("_UserRegistrationPartial", p);
 
 

@@ -14,21 +14,21 @@
             <div class="modal-body">
             <form id="UserRegisterForm" asp-controller="UserAuth" asp-action="RegisterUser">
                 <div class="form-group row mb-3">
-                    <label asp-for="registrationmodel.Email" class="col-md-4 col-form-label"></label>
+                    <label asp-for="registration.Email" class="col-md-4 col-form-label"></label>
                     <div class="col-md-8">
-                        <input asp-for="registrationmodel.Email" name="Email" placeholder="Email Address" class="form-control" />
+                        <input asp-for="registration.Email" name="Email" placeholder="Email Address" class="form-control" />
                     </div>
                 </div>
                 <div class="form-group row mb-3">
-                    <label asp-for="registrationmodel.FullName" class="col-md-4 col-form-label"></label>
+                    <label asp-for="registration.FullName" class="col-md-4 col-form-label"></label>
                     <div class="col-md-8">
-                        <input asp-for="registrationmodel.FullName" name="FullName" placeholder="Full Name" class="form-control" />
+                        <input asp-for="registration.FullName" name="FullName" placeholder="Full Name" class="form-control" />
                     </div>
                 </div>
                 <div class="form-group row mb-3">
-                    <label asp-for="registrationmodel.Password" class="col-md-4 col-form-label"></label>
+                    <label asp-for="registration.Password" class="col-md-4 col-form-label"></label>
                     <div class="col-md-8">
-                        <input asp-for="registrationmodel.Password" name="Password" placeholder="Password" class="form-control" />
+                        <input asp-for="registration.Password" name="Password" placeholder="Password" class="form-control" />
                     </div>
                 </div>
             </form>

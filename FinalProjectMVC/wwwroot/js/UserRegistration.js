@@ -3,7 +3,7 @@
     var userLoginButton = $("#UserRegister button[name='register']").click(onUserRegisterClick);
 
     function onUserRegisterClick() {
-        
+
         var url = "/UserAuth/RegisterUser";
 
         var antiForgeryToken = $("#UserRegister input[name='__RequestVerificationToken']").val();
@@ -26,7 +26,7 @@
             url: url,
             data: userInput,
             success: function (data) {
-    
+
                 var parsed = $.parseHTML(data);
 
 
@@ -42,15 +42,15 @@
                 //    $.validator.unobtrusive.parse(form);
 
                 //}
-             
-                    location.href = 'Home/Index';
 
-                
+                location.href = 'Home/Index';
+
+
             },
             error: function (xhr, ajaxOptions, thrownError) {
-               
+
                 var errorText = "Status: " + xhr.status + " - " + xhr.statusText;
-              
+
 
                 PresentClosableBootstrapAlert("#alert_placeholder_login", "danger", "Error!", errorText);
 
