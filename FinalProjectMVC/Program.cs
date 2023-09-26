@@ -19,6 +19,7 @@ builder.Services.AddDbContext<DataContext>(options => options.UseSqlServer(build
 
 builder.Services.AddDefaultIdentity<User>().AddEntityFrameworkStores<DataContext>();
 builder.Services.AddRazorPages();
+builder.Services.AddSession();
 var app = builder.Build();
 
 
@@ -34,6 +35,7 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
+app.UseSession();
 app.UseAuthentication();
 app.UseAuthorization();
 

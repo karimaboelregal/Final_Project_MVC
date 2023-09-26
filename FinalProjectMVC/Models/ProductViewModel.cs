@@ -1,4 +1,5 @@
-﻿using Models.Models;
+﻿using FinalProjectMVC.Areas.Identity.Pages.Account;
+using Models.Models;
 
 namespace FinalProjectMVC.Models
 {
