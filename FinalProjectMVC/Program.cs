@@ -19,6 +19,7 @@ builder.Services.AddDbContext<DataContext>(options => options.UseSqlServer(build
 
 builder.Services.AddDefaultIdentity<User>(options => options.SignIn.RequireConfirmedAccount = true).AddEntityFrameworkStores<DataContext>();
 builder.Services.AddRazorPages();
+builder.Services.AddSession();
 var app = builder.Build();
 
 
@@ -34,7 +35,7 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
-
+app.UseSession();
 app.UseAuthorization();
 
 app.MapControllerRoute(

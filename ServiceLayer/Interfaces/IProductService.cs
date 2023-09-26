@@ -13,5 +13,6 @@ namespace Services.Interfaces
     {
         Task<List<Product>> GetProductList();
         Task<List<Product>> GetProductsFromCategory(string id);
+        Task<Product> GetProduct(string id);
     }
 }
