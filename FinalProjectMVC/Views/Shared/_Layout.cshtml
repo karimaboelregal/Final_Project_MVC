@@ -38,25 +38,26 @@
                             <input type="text" style="width: 80%; border: none; outline: none; padding: 8px; border-radius: 3px" placeholder="What are you looking for?" />
                             <div class="d-flex flex-grow-1">
                                 <ul class="navbar-nav">
-                                @if (SignInManager.IsSignedIn(User))
-                                {
-                                    <li class="nav-item">
-                                        <a id="manage" class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @UserManager.GetUserName(User)!</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <form id="logoutForm" class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
-                                            <button id="logout" type="submit" class="nav-link btn btn-link text-dark border-0">Logout</button>
-                                        </form>
-                                    </li>
-                                }
-                                else{
-                                <a data-toggle="modal" data-target="#UserLogin" style="text-decoration: none">
-                                    <div class="divide nav-link text-dark " style="border-right: 1.5px solid grey;">
-                                        <i class="fa-regular fa-user"></i>
-                                        <span class="fw-bold">Sign in</span>
-                                    </div>
-                                </a>
-                                }
+                                    @if (SignInManager.IsSignedIn(User))
+                                    {
+                                        <li class="nav-item">
+                                            <a id="manage" class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @UserManager.GetUserName(User)!</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <form id="logoutForm" class="form-inline" asp-controller="UserAuth" asp-action="Logout">
+                                                <button id="logout" type="submit" class="nav-link btn btn-link text-dark border-0">Logout</button>
+                                            </form>
+                                        </li>
+                                    }
+                                    else
+                                    {
+                                        <a data-toggle="modal" data-target="#UserLogin" style="text-decoration: none">
+                                            <div class="divide nav-link text-dark " style="border-right: 1.5px solid grey;">
+                                                <i class="fa-regular fa-user"></i>
+                                                <span class="fw-bold">Sign in</span>
+                                            </div>
+                                        </a>
+                                    }
                                 </ul>
                                 <a href="#" style="text-decoration: none">
                                     <div class="divide nav-link text-dark" style="border-right: 1.5px solid grey;">
@@ -64,7 +65,7 @@
                                         <span class="fw-bold">Cart</span>
                                     </div>
                                 </a>
-                                
+
                             </div>
                         </div>
                     </div>
