@@ -3,7 +3,7 @@
     var userLoginButton = $("#UserLogin button[name='login']").click(onUserLoginClick);
 
     function onUserLoginClick() {
-        
+        alert("ihi");
         var url = "/UserAuth/Login";
 
         var antiForgeryToken = $("#UserLogin input[name='__RequestVerificationToken']").val();
@@ -25,7 +25,7 @@
             url: url,
             data: userInput,
             success: function (data) {
-                
+
                 var parsed = $.parseHTML(data);
 
                 var hasErrors = $(parsed).find("input[name='LoginInValid']").val() == "true";
@@ -42,15 +42,15 @@
                 //    $.validator.unobtrusive.parse(form);
 
                 //}
-             
-                    location.href = 'Home/Index';
 
-                
+                location.href = 'Home/Index';
+
+
             },
             error: function (xhr, ajaxOptions, thrownError) {
-               
+
                 var errorText = "Status: " + xhr.status + " - " + xhr.statusText;
-            
+
                 PresentClosableBootstrapAlert("#alert_placeholder_login", "danger", "Error!", errorText);
 
                 console.error(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
