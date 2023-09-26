@@ -48,6 +48,12 @@
                                                 <button id="logout" type="submit" class="nav-link btn btn-link text-dark border-0">Logout</button>
                                             </form>
                                         </li>
+                                        <a style="text-decoration: none" asp-controller="Cart" asp-action="Index">
+                                            <div class="divide nav-link text-dark" style="border-right: 1.5px solid grey;">
+                                                <i class="fa-solid fa-cart-shopping"></i>
+                                                <span class="fw-bold">Cart</span>
+                                            </div>
+                                        </a>
                                     }
                                     else
                                     {
@@ -57,14 +63,14 @@
                                                 <span class="fw-bold">Sign in</span>
                                             </div>
                                         </a>
+                                        <a data-toggle="modal" data-target="#UserLogin" style="text-decoration: none">
+                                            <div class="divide nav-link text-dark" style="border-right: 1.5px solid grey;">
+                                                <i class="fa-solid fa-cart-shopping"></i>
+                                                <span class="fw-bold">Cart</span>
+                                            </div>
+                                        </a>
                                     }
                                 </ul>
-                                <a href="#" style="text-decoration: none">
-                                    <div class="divide nav-link text-dark" style="border-right: 1.5px solid grey;">
-                                        <i class="fa-solid fa-cart-shopping"></i>
-                                        <span class="fw-bold">Cart</span>
-                                    </div>
-                                </a>
 
                             </div>
                         </div>
