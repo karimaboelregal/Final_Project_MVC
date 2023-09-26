@@ -1,0 +1,41 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model FinalProjectMVC.Models.ProductViewModel;
+
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header d-flex justify-content-center">
+                <h5 class="modal-title" id="exampleModalLabel">Register</h5>
+               
+            </div>
+            <div class="modal-body">
+            <form id="UserRegisterForm" asp-controller="UserAuth" asp-action="RegisterUser">
+                <div class="form-group row mb-3">
+                    <label asp-for="registrationmodel.Email" class="col-md-4 col-form-label"></label>
+                    <div class="col-md-8">
+                        <input asp-for="registrationmodel.Email" name="Email" placeholder="Email Address" class="form-control" />
+                    </div>
+                </div>
+                <div class="form-group row mb-3">
+                    <label asp-for="registrationmodel.FullName" class="col-md-4 col-form-label"></label>
+                    <div class="col-md-8">
+                        <input asp-for="registrationmodel.FullName" name="FullName" placeholder="Full Name" class="form-control" />
+                    </div>
+                </div>
+                <div class="form-group row mb-3">
+                    <label asp-for="registrationmodel.Password" class="col-md-4 col-form-label"></label>
+                    <div class="col-md-8">
+                        <input asp-for="registrationmodel.Password" name="Password" placeholder="Password" class="form-control" />
+                    </div>
+                </div>
+            </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button name="register" id="register" type="button" class="btn btn-primary">Register</button>
+            </div>
+        </div>
+    </div>
