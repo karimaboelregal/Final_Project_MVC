@@ -32,13 +32,7 @@
     </div>
 </div>
 
-@if (Model.Cart != null)
-{
-    foreach (Item item in Model.Cart.Items)
-    {
-        <span>@item.Product.NameEn</span>
-    }
-}
+
 <!-- Button trigger modal -->
 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
     Launch demo modal
@@ -73,11 +67,3 @@
 
 
 <!-- Modal -->
-<div class="modal fade" id="UserLogin" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <partial name="_UserLoginPartial" />
-</div>
-
-
-<div class="modal fade" id="UserRegister" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <partial name="_UserRegistrationPartial" />
-</div>
