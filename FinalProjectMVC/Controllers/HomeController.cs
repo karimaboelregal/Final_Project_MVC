@@ -24,11 +24,9 @@ namespace FinalProjectMVC.Controllers
         public async Task<IActionResult> IndexAsync()
         {
             ProductViewModel model = new ProductViewModel();
+            model.Cart = await GetCartFromSession();
             model.categories = await categoryService.GetCategories();
             model.products = await productService.GetProductList();
-            model.Cart = await GetCartFromSession();
-            //model.categories = await categoryService.GetCategories();
-            //model.products = await productService.GetProductList();
             model.login = new LoginModel(); ;
             model.registration = new RegistrationModel();
 
@@ -93,8 +91,8 @@ namespace FinalProjectMVC.Controllers
         public async Task<IActionResult> Category(string id)
         {
             ProductViewModel model = new ProductViewModel();
-            //model.categories = await categoryService.GetCategories();
-            //model.products = await productService.GetProductsFromCategory(id);
+            model.categories = await categoryService.GetCategories();
+            model.products = await productService.GetProductsFromCategory(id);
             model.login = new LoginModel(); ;
             model.registration = new RegistrationModel();
             return View("Index", model);
