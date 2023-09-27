@@ -288,6 +288,7 @@ namespace Data.Migrations
                         .HasColumnType("bit");
 
                     b.Property<string>("FullName")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("LockoutEnabled")
@@ -357,11 +358,9 @@ namespace Data.Migrations
                     b.HasBaseType("Models.Models.User");
 
                     b.Property<string>("Address")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Phone")
-                        .IsRequired()
                         .HasMaxLength(12)
                         .HasColumnType("nvarchar(12)");
 
@@ -421,7 +420,7 @@ namespace Data.Migrations
 
             modelBuilder.Entity("Models.Models.Order", b =>
                 {
-                    b.HasOne("Models.Models.Admin", "Customer")
+                    b.HasOne("Models.Models.Customer", "Customer")
                         .WithMany()
                         .HasForeignKey("CustomerId")
                         .OnDelete(DeleteBehavior.Cascade)

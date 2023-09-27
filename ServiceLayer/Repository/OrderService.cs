@@ -10,17 +10,26 @@ using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 using Services.Interfaces;
+using E_Commerce.Repository.Unit;
 
 namespace Services.Repository
 {
     public class OrderService : IOrderService
     {
-        private readonly IUnitOfWork unitOfWork;
-        public OrderService(IUnitOfWork _unitOFWork)
+        private readonly UnitOfWork unitOfWork;
+        public OrderService(UnitOfWork _unitOFWork)
         {
             unitOfWork = _unitOFWork;
         }
 
+        public async Task<Order> AddOrderAsync(Guid id, decimal totalprice)
+        {
+            Customer customer = await unitOfWork.customerRepository.Get(s => s.Id == id);
+            Order order = new Order() { Customer = customer, IsDeleted = false, Status = Models.Models.Enum.Status.Pending, TotalPrice = totalprice };
+            Order ord = await unitOfWork.orderRepository.Add(order);
+            await unitOfWork.SaveChangesAsync();
+            return ord;
+        }
 
     }
 }

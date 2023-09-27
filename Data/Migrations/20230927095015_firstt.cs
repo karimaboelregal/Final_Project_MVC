@@ -5,22 +5,24 @@
 namespace Data.Migrations
 {
     /// <inheritdoc />
-    public partial class IdentityV3 : Migration
+    public partial class firstt : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.AlterColumn<bool>(
-                name: "isActive",
-                table: "AspNetUsers",
-                type: "bit",
+            migrationBuilder.AlterColumn<string>(
+                name: "Phone",
+                table: "Customer",
+                type: "nvarchar(12)",
+                maxLength: 12,
                 nullable: true,
-                oldClrType: typeof(bool),
-                oldType: "bit");
+                oldClrType: typeof(string),
+                oldType: "nvarchar(12)",
+                oldMaxLength: 12);
 
             migrationBuilder.AlterColumn<string>(
-                name: "FullName",
-                table: "AspNetUsers",
+                name: "Address",
+                table: "Customer",
                 type: "nvarchar(max)",
                 nullable: true,
                 oldClrType: typeof(string),
@@ -30,19 +32,21 @@ namespace Data.Migrations
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.AlterColumn<bool>(
-                name: "isActive",
-                table: "AspNetUsers",
-                type: "bit",
+            migrationBuilder.AlterColumn<string>(
+                name: "Phone",
+                table: "Customer",
+                type: "nvarchar(12)",
+                maxLength: 12,
                 nullable: false,
-                defaultValue: false,
-                oldClrType: typeof(bool),
-                oldType: "bit",
+                defaultValue: "",
+                oldClrType: typeof(string),
+                oldType: "nvarchar(12)",
+                oldMaxLength: 12,
                 oldNullable: true);
 
             migrationBuilder.AlterColumn<string>(
-                name: "FullName",
-                table: "AspNetUsers",
+                name: "Address",
+                table: "Customer",
                 type: "nvarchar(max)",
                 nullable: false,
                 defaultValue: "",

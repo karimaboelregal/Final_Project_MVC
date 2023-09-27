@@ -14,11 +14,11 @@ namespace FinalProjectMVC.Controllers
         private readonly ILogger<HomeController> _logger;
         private readonly ICategoryService categoryService;
         private readonly IProductService productService;
-        private readonly UserManager<User> _userManager;
-        private readonly SignInManager<User> _signInManager;
+        private readonly UserManager<Customer> _userManager;
+        private readonly SignInManager<Customer> _signInManager;
 
 
-        public HomeController(ILogger<HomeController> logger, ICategoryService _categoryService, IProductService _productService, UserManager<User> userManager, SignInManager<User> signInManager)
+        public HomeController(ILogger<HomeController> logger, ICategoryService _categoryService, IProductService _productService, UserManager<Customer> userManager, SignInManager<Customer> signInManager)
         {
             _logger = logger;
             categoryService = _categoryService;

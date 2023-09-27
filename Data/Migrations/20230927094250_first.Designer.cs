@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Data.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20230924121510_Identity-V3")]
-    partial class IdentityV3
+    [Migration("20230927094250_first")]
+    partial class first
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -291,6 +291,7 @@ namespace Data.Migrations
                         .HasColumnType("bit");
 
                     b.Property<string>("FullName")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("LockoutEnabled")
@@ -424,7 +425,7 @@ namespace Data.Migrations
 
             modelBuilder.Entity("Models.Models.Order", b =>
                 {
-                    b.HasOne("Models.Models.Admin", "Customer")
+                    b.HasOne("Models.Models.Customer", "Customer")
                         .WithMany()
                         .HasForeignKey("CustomerId")
                         .OnDelete(DeleteBehavior.Cascade)

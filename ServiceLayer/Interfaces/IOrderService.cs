@@ -11,5 +11,6 @@ namespace Services.Interfaces
 {
     public interface IOrderService
     {
+        public Task<Order> AddOrderAsync(Guid id, decimal totalprice);
     }
 }
