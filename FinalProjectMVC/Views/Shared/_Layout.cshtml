@@ -26,51 +26,62 @@
 <body>
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light border-bottom box-shadow " style="background-color: #feee00">
-            <div class="container">
-                <div class="d-flex w-100 justify-content-center">
-                    <div class="d-flex px-5 w-100 justify-content-center ">
+            <div class="container-fluid">
+                <div class="d-flex w-100 justify-content-center ">
+                    <div class="d-flex px-5 w-100 justify-content-end align-items-center">
                         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                                 aria-expanded="false" aria-label="Toggle navigation">
                             <span class="navbar-toggler-icon"></span>
                         </button>
                         <a asp-area="" asp-controller="Home" asp-action="Index"><img class="navbar-brand" src="https://f.nooncdn.com/s/app/com/noon/design-system/logos/noon-logo-en.svg" height="50" width="85" /></a>
                         <div class="navbar-collapse collapse d-sm-inline-flex flex-grow-1  ">
-                            <input type="text" style="width: 80%; border: none; outline: none; padding: 8px; border-radius: 3px" placeholder="What are you looking for?" />
+                            <input type="text" style="width: 60%; border: none; outline: none; padding: 8px; border-radius: 3px" placeholder="What are you looking for?" />
                             <div class="d-flex flex-grow-1">
                                 <ul class="navbar-nav">
-                                    @if (SignInManager.IsSignedIn(User))
-                                    {
-                                        <li class="nav-item">
-                                            <a id="manage" class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @UserManager.GetUserName(User)!</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <form id="logoutForm" class="form-inline" asp-controller="UserAuth" asp-action="Logout">
-                                                <button id="logout" type="submit" class="nav-link btn btn-link text-dark border-0">Logout</button>
-                                            </form>
-                                        </li>
-                                        <a style="text-decoration: none" asp-controller="Cart" asp-action="Index">
-                                            <div class="divide nav-link text-dark" style="border-right: 1.5px solid grey;">
-                                                <i class="fa-solid fa-cart-shopping"></i>
-                                                <span class="fw-bold">Cart</span>
+                                @if (SignInManager.IsSignedIn(User))
+                                {
+      
+                                        <a href="#" style="text-decoration: none">
+                                            <div class="d-flex align-items-center nav-link text-dark" style="border-right: 1.5px solid grey;">
+                                                <i class="fa-solid fa fa-user p-1"></i>
+                                                <span class="fw-bold">Hello @UserManager.GetUserName(User).Split("@").ToList().First() !</span>
                                             </div>
                                         </a>
-                                    }
-                                    else
-                                    {
-                                        <a data-toggle="modal" data-target="#UserLogin" style="text-decoration: none">
-                                            <div class="divide nav-link text-dark " style="border-right: 1.5px solid grey;">
-                                                <i class="fa-regular fa-user"></i>
-                                                <span class="fw-bold">Sign in</span>
-                                            </div>
-                                        </a>
-                                        <a data-toggle="modal" data-target="#UserLogin" style="text-decoration: none">
-                                            <div class="divide nav-link text-dark" style="border-right: 1.5px solid grey;">
-                                                <i class="fa-solid fa-cart-shopping"></i>
-                                                <span class="fw-bold">Cart</span>
-                                            </div>
-                                        </a>
-                                    }
+                               
+                                }
+                                else{
+                                <a data-toggle="modal" data-target="#UserLogin" style="text-decoration: none">
+                                    <div class="divide nav-link text-dark " style="border-right: 1.5px solid grey;">
+                                        <i class="fa-regular fa-user"></i>
+                                        <span class="fw-bold">Sign in</span>
+                                    </div>
+                                </a>
+                                }
                                 </ul>
+                                <a asp-controller="Orders" asp-action="Index" style="text-decoration: none">
+                                    <div class="d-flex align-items-center nav-link text-dark" style="border-right: 1.5px solid grey;">
+                                        <i class="fa-solid fa fa-gift p-1"></i>
+                                        <span class="fw-bold">Orders</span>
+                                    </div>
+                                </a>
+                                <a asp-controller="Cart" asp-action="Index" style="text-decoration: none">
+                                    <div class="d-flex align-items-center nav-link text-dark" style="border-right: 1.5px solid grey;">
+                                        <i class="fa-solid fa-cart-shopping p-1"></i>
+                                        <span class="fw-bold">Cart</span>
+                                    </div>
+                                </a>
+                                 @if (SignInManager.IsSignedIn(User))
+                                {
+
+                                    <form id="logoutForm" class="form-inline" asp-controller="UserAuth" asp-action="Logout">
+                                        <div class="d-flex align-items-center nav-link text-dark" style="border-right: 1.5px solid grey;">
+                                            <i class="fa-solid fa fa-sign-out p-1"></i>
+                                            <button id="logout" type="submit" class="nav-link btn btn-link text-dark border-0 m-0 p-0 fw-bold">Logout</button>
+                                        </div>
+
+                                    </form>
+                                }
+
 
                             </div>
                         </div>

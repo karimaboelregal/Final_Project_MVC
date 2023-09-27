@@ -41,6 +41,16 @@ namespace E_Commerce.Data.Context
             builder.Entity<OrderDetails>().Property(od => od.UnitPrice).HasColumnType("money");
             builder.Entity<Product>().Property(p => p.UnitPrice).HasColumnType("money");
             builder.Entity<Product>().HasOne(p => p.Category).WithMany(c => c.Products).HasForeignKey(p => p.CategoryId);
+
+
+            //builder.Entity<Order>().HasData(
+            //    new Order
+            //    {
+            //        Customer.
+            //        FirstName = "William",
+            //        LastName = "Shakespeare"
+            //    }
+            //);
             base.OnModelCreating(builder);
         }
         
