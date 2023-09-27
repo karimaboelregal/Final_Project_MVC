@@ -8,9 +8,11 @@ using System.Text.Json;
 using Microsoft.AspNetCore.Identity;
 using System.Linq;
 using System.Security.Claims;
+using Microsoft.AspNetCore.Authorization;
 
 namespace FinalProjectMVC.Controllers
 {
+    [Authorize]
     public class CartController : Controller
     {
         private readonly IProductService _productService;
