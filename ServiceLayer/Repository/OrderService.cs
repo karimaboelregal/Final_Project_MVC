@@ -23,6 +23,14 @@ namespace Services.Repository
         }
 
         public async Task<List<Order>> GetAllOrders(string id)
+        public async Task<Order> AddOrderAsync(Guid id, decimal totalprice)
+        {
+            Customer customer = await unitOfWork.customerRepository.Get(s => s.Id == id);
+            Order order = new Order() { Customer = customer, IsDeleted = false, Status = Models.Models.Enum.Status.Pending, TotalPrice = totalprice };
+            Order ord = await unitOfWork.orderRepository.Add(order);
+            await unitOfWork.SaveChangesAsync();
+            return ord;
+        }
 
         {
             

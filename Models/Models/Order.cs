@@ -10,7 +10,7 @@ namespace Models.Models
     public class Order : BaseEntity
     {
         public decimal TotalPrice { get; set; }
-        public Admin Customer { get; set; }
+        public Customer Customer { get; set; }
         public Status Status { get; set; }
     }
 }

@@ -1,39 +1,68 @@
-﻿@using Models.Models;
+﻿@using Microsoft.AspNetCore.Identity;
+@using Models.Models;
 @model ProductViewModel
+
+
+
+
+
 @{
     ViewData["Title"] = "Home Page";
 }
-
 <div class="container pt-5">
     <div class="row pb-3 ">
-       @* @foreach (Product product in Model.products)
+        @if (!User.Identity.IsAuthenticated)
         {
-            <div class="col-md-2 p-2 offset-1 pt-4" style="height: 350px">
-                <img src="@product.Image" alt="" class="img-fluid h-75 w-100 pb-2" style="filter: brightness(95%);">
-                <div class="d-flex flex-column">
-                    <span class="text-blue pr-3 font-weight-bold Manrope d-block">@product.NameEn</span>
-                    <span class="text-muted small font-weight-light sans d-block">EGP @product.UnitPrice</span>
+
+            foreach (Product product in Model.products)
+
+            {
+                <div class="col-md-2 p-2 offset-1 pt-4 mb-5" style="height: 350px">
+
+                    <input type="hidden" name="id" value="@product.Id" />
+                    <img src="@product.Image" alt="" class="img-fluid h-75 w-100 pb-2" style="filter: brightness(95%);">
+                    <div class="d-flex flex-column">
+                        <span class="text-blue pr-3 font-weight-bold Manrope d-block">@product.NameEn</span>
+                        <span class="text-muted small font-weight-light sans d-block">EGP @product.UnitPrice</span>
+                    </div>
+                    <div class="d-flex justify-content-end pt-2">
+                        <a data-toggle="modal" class="btn btn-cart" data-target="#UserLogin" style="text-decoration: none">
+                            <i class="fa-solid fa-cart-shopping"></i>
+                            Add to cart
+                        </a>
+                    </div>
                 </div>
-                <div class="d-flex justify-content-end pt-2">
-                    <button class="btn btn-cart" >
-                        <i class="fa-solid fa-cart-shopping"></i>
-                        Add to cart
-                    </button>
+
+            }
+        }
+        else
+        {
+            foreach (Product product in Model.products)
+
+            {
+                <div class="col-md-2 p-2 offset-1 pt-4 mb-5" style="height: 350px">
+
+                    <form method="post" class="mb-2" asp-controller="" asp-action="AddToCart">
+                        <input type="hidden" name="id" value="@product.Id" />
+                        <img src="@product.Image" alt="" class="img-fluid h-75 w-100 pb-2" style="filter: brightness(95%);">
+                        <div class="d-flex flex-column">
+                            <span class="text-blue pr-3 font-weight-bold Manrope d-block">@product.NameEn</span>
+                            <span class="text-muted small font-weight-light sans d-block">EGP @product.UnitPrice</span>
+                        </div>
+                        <div class="d-flex justify-content-end pt-2">
+                            <button class="btn btn-cart" type="submit">
+                                <i class="fa-solid fa-cart-shopping"></i>
+                                Add to cart
+                            </button>
+                        </div>
+                    </form>
                 </div>
-            </div>
-        }*@
+
+            }
+
+        }
 
     </div>
 </div>
 
 
-
-<!-- Modal -->
-<div class="modal fade" id="UserLogin" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <partial name="_UserLoginPartial" />
-</div>
-
-
-<div class="modal fade" id="UserRegister" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <partial name="_UserRegistrationPartial" />
-</div>

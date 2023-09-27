@@ -29,5 +29,10 @@ namespace Services.Repository
             List<Product> prods = (List<Product>)await unitOfWork.productRepository.GetAll(p => p.CategoryId == Guid.Parse(id));
             return prods;
         }
+        public async Task<Product> GetProduct(string id)
+        {
+            Product prod = await unitOfWork.productRepository.Get(p => p.Id == Guid.Parse(id));
+            return prod;
+        }
     }
 }

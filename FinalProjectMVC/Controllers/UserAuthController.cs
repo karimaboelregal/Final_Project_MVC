@@ -10,13 +10,13 @@ namespace FinalProjectMVC.Controllers
 
     public class UserAuthController : Controller
     {
-        private readonly UserManager<User> _userManager;
-        private readonly SignInManager<User> _signInManager;
+        private readonly UserManager<Customer> _userManager;
+        private readonly SignInManager<Customer> _signInManager;
 
 
         public UserAuthController(DataContext context,
-                                  UserManager<User> userManager,
-                                  SignInManager<User> signInManager)
+                                  UserManager<Customer> userManager,
+                                  SignInManager<Customer> signInManager)
         {
             _userManager = userManager;
             _signInManager = signInManager;
@@ -71,7 +71,7 @@ namespace FinalProjectMVC.Controllers
 
 
 
-            User user = new User
+            Customer user = new Customer
             {
                
                 Email = registrationModel.Email,

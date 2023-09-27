@@ -2,8 +2,8 @@
 @using Models.Models;
 @model LayoutViewModel
 
-@inject SignInManager<User> SignInManager
-@inject UserManager<User> UserManager
+@inject SignInManager<Customer> SignInManager
+@inject UserManager<Customer> UserManager
 
 <!DOCTYPE html>
 <html lang="en">
@@ -97,20 +97,20 @@
                             <span class="sr-only">Toggle Dropdown</span>
                         </button>
                         <div class="dropdown-menu">
-                          @*  @foreach (Category cat in Model.categories)
+                            @foreach (Category cat in Model.categories)
                             {
                                 <a class="dropdown-item" asp-controller="Home" asp-action="Category" asp-route-id="@cat.Id" asp-data="">@cat.Name</a>
-                            }*@
+                            }
                         </div>
                     </div>
                 </div>
                 <div class="d-flex">
-                    @*@foreach (Category cat in Model.categories.Take(5))
+                    @foreach (Category cat in Model.categories.Take(5))
                     {
                         <a asp-controller="Home" asp-action="Category" asp-route-id="@cat.Id" style="text-decoration: none; color: black"><button class="px-4 fw-bold custom-button text-center">@cat.Name</button></a>
 
 
-                    }*@
+                    }
                 </div>
             </div>
             </div>
@@ -144,4 +144,12 @@
 
     @await RenderSectionAsync("Scripts", required: false)
 </body>
+<div class="modal fade" id="UserLogin" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <partial name="_UserLoginPartial" />
+</div>
+
+
+<div class="modal fade" id="UserRegister" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <partial name="_UserRegistrationPartial" />
+</div>
 </html>

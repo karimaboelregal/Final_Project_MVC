@@ -1,4 +1,6 @@
-﻿using Models.Models;
+﻿using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Identity;
+using Models.Models;
 
 namespace FinalProjectMVC.Models
 {
@@ -7,6 +9,9 @@ namespace FinalProjectMVC.Models
         public List<Product> products { get; set; }
         public List<Order> orders { get; set; }
         public LoginModel login { get; set; }
-        public  RegistrationModel registration { get; set; }    
+        public  RegistrationModel registration { get; set; }
+        [Inject]
+        protected SignInManager<Customer>? signInManager { get; set; }
+
     }
 }

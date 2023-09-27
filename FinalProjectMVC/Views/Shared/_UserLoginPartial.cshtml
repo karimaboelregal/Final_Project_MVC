@@ -7,29 +7,29 @@
 @model FinalProjectMVC.Models.ProductViewModel;
 <!-- Modal -->
 
-    <div class="modal-dialog p-5" role="document">
-        <div class="modal-content">
-            <div class="modal-header d-flex flex-column justify-content-center align-content-center">
+<div class="modal-dialog p-5" role="document">
+    <div class="modal-content">
+        <div class="modal-header d-flex flex-column justify-content-center align-content-center">
             <h5 class="modal-title" id="exampleModalLabel">
                 Welcome back!
-             
+
             </h5>
-             <h3 class="modal-title" id="exampleModalLabel">
+            <h3 class="modal-title" id="exampleModalLabel">
                 Sign in to your account
-             
+
             </h3>
             <p>
                 Don't have an account?
                 <span><a id="register" data-toggle="modal" data-target="#UserRegister" data-dismiss="modal" style="text-decoration: none">Sign Up</a></span>
             </p>
-            
+
             @*<a id="register" data-toggle="modal" data-target="#UserRegister"  data-dismiss="modal" style="text-decoration: none">test</a>*@
-            </div>
-            <div class="modal-body">
+        </div>
+        <div class="modal-body">
             <form id="UserLoginForm" asp-controller="UserAuth" asp-action="Login">
-                    <div class="form-group row mb-3">
-                        <label asp-for="login.Email" class="col-md-4 col-form-label"></label>
-                        <div class="col-md-8">
+                <div class="form-group row mb-3">
+                    <label asp-for="login.Email" class="col-md-4 col-form-label"></label>
+                    <div class="col-md-8">
                         <input asp-for="login.Email" name="Email" placeholder="Email Address" class="form-control" />
                         </div>
                     </div>
@@ -40,11 +40,11 @@
                         <input asp-for="login.Password" name="Password" placeholder="Password" class="form-control" />
                     </div>
                 </div>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </form>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
             <button id="login" name="login" type="button" class="btn btn-primary">Login</button>
-            </div>
         </div>
     </div>
+</div>

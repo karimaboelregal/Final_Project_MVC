@@ -13,8 +13,7 @@ namespace FinalProjectMVC.Models
         [Required]
         [DataType(DataType.Password)]
         public string Password { get; set; }
-
-
         public string FullName { get; set; }
+
     }
 }
