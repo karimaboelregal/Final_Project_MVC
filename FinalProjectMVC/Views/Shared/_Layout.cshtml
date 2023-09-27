@@ -38,25 +38,40 @@
                             <input type="text" style="width: 60%; border: none; outline: none; padding: 8px; border-radius: 3px" placeholder="What are you looking for?" />
                             <div class="d-flex flex-grow-1">
                                 <ul class="navbar-nav">
-                                @if (SignInManager.IsSignedIn(User))
-                                {
-      
+                                    @if (SignInManager.IsSignedIn(User))
+                                    {
+
                                         <a href="#" style="text-decoration: none">
                                             <div class="d-flex align-items-center nav-link text-dark" style="border-right: 1.5px solid grey;">
                                                 <i class="fa-solid fa fa-user p-1"></i>
                                                 <span class="fw-bold">Hello @UserManager.GetUserName(User).Split("@").ToList().First() !</span>
                                             </div>
                                         </a>
-                               
-                                }
-                                else{
-                                <a data-toggle="modal" data-target="#UserLogin" style="text-decoration: none">
-                                    <div class="divide nav-link text-dark " style="border-right: 1.5px solid grey;">
-                                        <i class="fa-regular fa-user"></i>
-                                        <span class="fw-bold">Sign in</span>
-                                    </div>
-                                </a>
-                                }
+                                        <a asp-controller="Cart" asp-action="Index" style="text-decoration: none">
+                                            <div class="d-flex align-items-center nav-link text-dark" style="border-right: 1.5px solid grey;">
+                                                <i class="fa-solid fa-cart-shopping p-1"></i>
+                                                <span class="fw-bold">Cart</span>
+                                            </div>
+                                        </a>
+
+
+                                    }
+                                    else
+                                    {
+                                        <a data-toggle="modal" data-target="#UserLogin" style="text-decoration: none">
+                                            <div class="divide nav-link text-dark " style="border-right: 1.5px solid grey;">
+                                                <i class="fa-regular fa-user"></i>
+                                                <span class="fw-bold">Sign in</span>
+                                            </div>
+                                        </a>
+                                        <a data-toggle="modal" data-target="#UserLogin" style="text-decoration: none">
+                                            <div class="d-flex align-items-center nav-link text-dark" style="border-right: 1.5px solid grey;">
+                                                <i class="fa-solid fa-cart-shopping p-1"></i>
+                                                <span class="fw-bold">Cart</span>
+                                            </div>
+                                        </a>
+
+                                    }
                                 </ul>
                                 <a asp-controller="Orders" asp-action="Index" style="text-decoration: none">
                                     <div class="d-flex align-items-center nav-link text-dark" style="border-right: 1.5px solid grey;">
@@ -64,13 +79,7 @@
                                         <span class="fw-bold">Orders</span>
                                     </div>
                                 </a>
-                                <a asp-controller="Cart" asp-action="Index" style="text-decoration: none">
-                                    <div class="d-flex align-items-center nav-link text-dark" style="border-right: 1.5px solid grey;">
-                                        <i class="fa-solid fa-cart-shopping p-1"></i>
-                                        <span class="fw-bold">Cart</span>
-                                    </div>
-                                </a>
-                                 @if (SignInManager.IsSignedIn(User))
+                                @if (SignInManager.IsSignedIn(User))
                                 {
 
                                     <form id="logoutForm" class="form-inline" asp-controller="UserAuth" asp-action="Logout">
