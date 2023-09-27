@@ -11,6 +11,6 @@ namespace Services.Interfaces
 {
     public interface IOrderDetailsService
     {
-
+        public Task<OrderDetails> AddDetails(Order order, Product product, int count);
     }
 }

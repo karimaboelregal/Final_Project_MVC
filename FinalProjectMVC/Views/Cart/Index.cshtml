@@ -1,0 +1,84 @@
+﻿@using Models.Models;
+@model ProductViewModel
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+
+<form method="post" asp-controller="Cart" asp-action="Checkout">
+    <div class="container pt-5" style="height: 60vh">
+        <div class="row justify-content-center h-100">
+            <div class="col-md-8 card p-3 h-100">
+                <div class="d-flex h-100">
+                    <div class="d-flex flex-column w-75 h-100" style="border-right: 1px solid black">
+                        @foreach (Item item in Model.Cart.Items)
+                        {
+                            <div class="item d-flex w-100 justify-content-between" style="height: 80px">
+                                <div class="d-flex" style="width: 33%">
+                                    <img src="@item.Product.Image" style="width: 25%" />
+                                    <div class="d-flex flex-column">
+                                        <span class="d-block px-3 pt-3" style="font-size: 18px; font-weight: bold">@item.Product.NameEn</span>
+                                        <span class="d-block px-3" style="font-size: 14px">EGP @item.Product.UnitPrice</span>
+                                    </div>
+                                </div>
+                                <div class="d-flex h-100 align-items-center justify-content-center gap-1" style="width: 33%">
+                                    <button class="btn btn-cart" type="button" style="width: 40px; height: 40px" onclick="DeleteItem('@item.Product.Id')">-</button>
+                                    <input type="text" id="amount-@item.Product.Id" value="@item.ProductCount" style="width: 40px; height: 40px; text-align: center" readonly />
+                                    <button class="btn btn-cart" type="button" style="width: 40px; height: 40px" onclick="AddItem('@item.Product.Id')">+</button>
+                                </div>
+                                <div class="d-flex h-100 align-items-center gap-1 justify-content-end p-2" style="width: 33%">
+                                    <span>EGP @(item.Product.UnitPrice * item.ProductCount)</span>
+                                </div>
+
+                            </div>
+                        }
+                    </div>
+                    <div class="d-flex w-25 h-100 p-3 flex-column justify-content-center align-items-center">
+                        <span>Total price: @Model.Cart.TotalPrice</span>
+                        <button class="btn btn-cart">Checkout</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+<script>
+    function AddItem(id) {
+        var url = '@Url.Action("IncrementItem", "Cart", new { i = "js-id" })'.replace("js-id", encodeURIComponent(id));
+        $.ajax({
+            url: url,
+            data: JSON.stringify(id),
+            type: 'POST',
+            success: function () {
+                document.getElementById("amount-" + id).value = parseInt(document.getElementById("amount-" + id).value) + 1
+            },
+            complete: function () {
+
+            },
+            failure: function () {
+                alert("failure");
+            }
+        });
+    }
+    function DeleteItem(id) {
+        var url = '@Url.Action("DecrementItem", "Cart", new { i = "js-id" })'.replace("js-id", encodeURIComponent(id));
+        $.ajax({
+            url: url,
+            data: JSON.stringify(id),
+            type: 'POST',
+            success: function () {
+                if (parseInt(document.getElementById("amount-" + id).value) == 1) {
+                    location.reload();
+                }
+                document.getElementById("amount-" + id).value = parseInt(document.getElementById("amount-" + id).value) - 1
+            },
+            complete: function () {
+
+            },
+            failure: function () {
+                alert("failure");
+            }
+        });
+    }
+
+</script>

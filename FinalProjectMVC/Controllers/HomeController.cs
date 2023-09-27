@@ -1,4 +1,5 @@
 ﻿using FinalProjectMVC.Models;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Models.Models;
 using Services.Interfaces;
@@ -13,12 +14,17 @@ namespace FinalProjectMVC.Controllers
         private readonly ILogger<HomeController> _logger;
         private readonly ICategoryService categoryService;
         private readonly IProductService productService;
+        private readonly UserManager<Customer> _userManager;
+        private readonly SignInManager<Customer> _signInManager;
 
-        public HomeController(ILogger<HomeController> logger, ICategoryService _categoryService, IProductService _productService)
+
+        public HomeController(ILogger<HomeController> logger, ICategoryService _categoryService, IProductService _productService, UserManager<Customer> userManager, SignInManager<Customer> signInManager)
         {
             _logger = logger;
             categoryService = _categoryService;
             productService = _productService;
+            _userManager = userManager;
+            _signInManager = signInManager;
         }
 
         public async Task<IActionResult> IndexAsync()

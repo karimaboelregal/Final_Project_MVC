@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Data.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20230924120835_Identity-V2")]
-    partial class IdentityV2
+    [Migration("20230927095015_firstt")]
+    partial class firstt
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -327,7 +327,7 @@ namespace Data.Migrations
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");
 
-                    b.Property<bool>("isActive")
+                    b.Property<bool?>("isActive")
                         .HasColumnType("bit");
 
                     b.HasKey("Id");
@@ -361,11 +361,9 @@ namespace Data.Migrations
                     b.HasBaseType("Models.Models.User");
 
                     b.Property<string>("Address")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Phone")
-                        .IsRequired()
                         .HasMaxLength(12)
                         .HasColumnType("nvarchar(12)");
 
@@ -425,7 +423,7 @@ namespace Data.Migrations
 
             modelBuilder.Entity("Models.Models.Order", b =>
                 {
-                    b.HasOne("Models.Models.Admin", "Customer")
+                    b.HasOne("Models.Models.Customer", "Customer")
                         .WithMany()
                         .HasForeignKey("CustomerId")
                         .OnDelete(DeleteBehavior.Cascade)
