@@ -31,7 +31,7 @@ namespace Data.Migrations
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     FullName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    isActive = table.Column<bool>(type: "bit", nullable: false),
+                    isActive = table.Column<bool>(type: "bit", nullable: true),
                     UserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     NormalizedUserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     Email = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
@@ -130,8 +130,8 @@ namespace Data.Migrations
                 name: "AspNetUserLogins",
                 columns: table => new
                 {
-                    LoginProvider = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    ProviderKey = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    LoginProvider = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: false),
+                    ProviderKey = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: false),
                     ProviderDisplayName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     UserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
                 },
@@ -175,8 +175,8 @@ namespace Data.Migrations
                 columns: table => new
                 {
                     UserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    LoginProvider = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    Name = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    LoginProvider = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: false),
                     Value = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
@@ -218,6 +218,7 @@ namespace Data.Migrations
                     NameAr = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     UnitPrice = table.Column<decimal>(type: "money", nullable: false),
                     StockQuantity = table.Column<int>(type: "int", nullable: false),
+                    Image = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     CategoryId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     CreatedOn = table.Column<DateTime>(type: "datetime2", nullable: false),
                     IsDeleted = table.Column<bool>(type: "bit", nullable: false)
@@ -248,9 +249,9 @@ namespace Data.Migrations
                 {
                     table.PrimaryKey("PK_Orders", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Orders_Admins_CustomerId",
+                        name: "FK_Orders_Customer_CustomerId",
                         column: x => x.CustomerId,
-                        principalTable: "Admins",
+                        principalTable: "Customer",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -340,6 +341,9 @@ namespace Data.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
+                name: "Admins");
+
+            migrationBuilder.DropTable(
                 name: "AspNetRoleClaims");
 
             migrationBuilder.DropTable(
@@ -355,9 +359,6 @@ namespace Data.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
-                name: "Customer");
-
-            migrationBuilder.DropTable(
                 name: "OrderDetails");
 
             migrationBuilder.DropTable(
@@ -370,7 +371,7 @@ namespace Data.Migrations
                 name: "Products");
 
             migrationBuilder.DropTable(
-                name: "Admins");
+                name: "Customer");
 
             migrationBuilder.DropTable(
                 name: "Categories");

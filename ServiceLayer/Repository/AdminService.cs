@@ -9,13 +9,14 @@ using System.Threading.Tasks;
 using Models.Models;
 using Models.Models;
 using Services.Interfaces;
+using E_Commerce.Repository.Unit;
 
 namespace Services.Repository
 {
     public class AdminService : IAdminService
     {
-        private readonly IUnitOfWork unitOfWork;
-        public AdminService(IUnitOfWork _unitOFWork)
+        private readonly UnitOfWork unitOfWork;
+        public AdminService(UnitOfWork _unitOFWork)
         {
             unitOfWork = _unitOFWork;
         }
