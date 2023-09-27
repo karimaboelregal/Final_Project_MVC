@@ -15,7 +15,7 @@ namespace E_Commerce.Repository.Unit
         public GenericRepository<Admin> adminRepository;
         public GenericRepository<Customer> customerRepository;
         public GenericRepository<Category> categoryRepository;
-        public GenericRepository<Order> orderRepository;
+        public GenericRepository<Order> orderRepository;   
         public GenericRepository<OrderDetails> orderDetailsRepository;
         public GenericRepository<Product> productRepository;
 

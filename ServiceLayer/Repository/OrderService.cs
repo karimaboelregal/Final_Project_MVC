@@ -10,17 +10,24 @@ using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 using Services.Interfaces;
+using E_Commerce.Repository.Unit;
 
 namespace Services.Repository
 {
     public class OrderService : IOrderService
     {
-        private readonly IUnitOfWork unitOfWork;
-        public OrderService(IUnitOfWork _unitOFWork)
+        private readonly UnitOfWork unitOfWork;
+        public OrderService(UnitOfWork _unitOFWork)
         {
             unitOfWork = _unitOFWork;
         }
 
+        public async Task<List<Order>> GetAllOrders(string id)
 
+        {
+            
+            List<Order> orders = (List<Order>) await unitOfWork.orderRepository.GetAll(p => p.Customer.Id == Guid.Parse(id));
+            return orders;
+        }
     }
 }

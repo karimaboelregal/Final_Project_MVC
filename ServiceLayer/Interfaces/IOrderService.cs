@@ -11,5 +11,6 @@ namespace Services.Interfaces
 {
     public interface IOrderService
     {
+        Task<List<Order>> GetAllOrders(string id);
     }
 }

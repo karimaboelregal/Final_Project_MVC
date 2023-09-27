@@ -26,9 +26,9 @@
 <body>
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light border-bottom box-shadow " style="background-color: #feee00">
-            <div class="container">
-                <div class="d-flex w-100 justify-content-center">
-                    <div class="d-flex px-5 w-100 justify-content-center ">
+            <div class="container-fluid">
+                <div class="d-flex w-100 justify-content-center ">
+                    <div class="d-flex px-5 w-100 justify-content-end align-items-center">
                         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                                 aria-expanded="false" aria-label="Toggle navigation">
                             <span class="navbar-toggler-icon"></span>
@@ -59,12 +59,22 @@
                                 }
                                 </ul>
                                 <a href="#" style="text-decoration: none">
-                                    <div class="divide nav-link text-dark" style="border-right: 1.5px solid grey;">
-                                        <i class="fa-solid fa-cart-shopping"></i>
+                                    <div class="d-flex align-items-center nav-link text-dark" style="border-right: 1.5px solid grey;">
+                                        <i class="fa-solid fa-cart-shopping p-1"></i>
                                         <span class="fw-bold">Cart</span>
                                     </div>
                                 </a>
                                 
+                                    <form id="logoutForm" class="form-inline" asp-controller="UserAuth" asp-action="Logout">
+                                        <div class="d-flex align-items-center nav-link text-dark" style="border-right: 1.5px solid grey;">
+                                            <i class="fa-solid fa fa-sign-out p-1"></i>
+                                            <button id="logout" type="submit" class="nav-link btn btn-link text-dark border-0 m-0 p-0 fw-bold">Logout</button>
+                                        </div>
+
+                                    </form>
+
+                                }
+
                             </div>
                         </div>
                     </div>
