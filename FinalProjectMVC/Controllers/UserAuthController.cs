@@ -33,7 +33,7 @@ namespace FinalProjectMVC.Controllers
             p.login = loginModel;
 
 
-            var result = await _signInManager.PasswordSignInAsync(loginModel.FullName,
+            var result = await _signInManager.PasswordSignInAsync(loginModel.Email,
                                                                    loginModel.Password,
                                                                         true,
                                                                    lockoutOnFailure: false);
@@ -73,9 +73,10 @@ namespace FinalProjectMVC.Controllers
 
             Customer user = new Customer
             {
-                FullName = registrationModel.FullName,
+               
                 Email = registrationModel.Email,
-                UserName = registrationModel.FullName,
+                UserName = registrationModel.Email,
+                FullName=registrationModel.Email
 
 
 
