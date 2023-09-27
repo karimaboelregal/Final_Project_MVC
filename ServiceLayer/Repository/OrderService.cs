@@ -23,6 +23,11 @@ namespace Services.Repository
         }
 
         public async Task<List<Order>> GetAllOrders(string id)
+        {
+
+            List<Order> orders = (List<Order>)await unitOfWork.orderRepository.GetAll(p => p.Customer.Id == Guid.Parse(id));
+            return orders;
+        }
         public async Task<Order> AddOrderAsync(Guid id, decimal totalprice)
         {
             Customer customer = await unitOfWork.customerRepository.Get(s => s.Id == id);
@@ -32,10 +37,6 @@ namespace Services.Repository
             return ord;
         }
 
-        {
-            
-            List<Order> orders = (List<Order>) await unitOfWork.orderRepository.GetAll(p => p.Customer.Id == Guid.Parse(id));
-            return orders;
-        }
+   
     }
 }
