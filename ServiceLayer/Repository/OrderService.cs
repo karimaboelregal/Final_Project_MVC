@@ -37,6 +37,10 @@ namespace Services.Repository
             return ord;
         }
 
-   
+        public async Task<List<OrderDetails>> GetOrderDetails(Guid id)
+        {
+            List<OrderDetails> prods = (List<OrderDetails>)await unitOfWork.orderDetailsRepository.GetAll(p => p.OrderId == id);
+            return prods;
+        }
     }
 }

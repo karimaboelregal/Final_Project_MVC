@@ -1,0 +1,55 @@
+﻿@using Models.Models;
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model FinalProjectMVC.Models.ProductViewModel;
+
+
+<div class="row mt-5">
+    @foreach (var item in Model.orderdetails)
+    {
+
+        <div class="card p-3 mb-3" style="width: 100%;">
+
+            @foreach (Order order in Model.orders)
+
+            {
+                if (order.Id == item.OrderId)
+
+                {
+                  
+                        <h3>Status : @order.Status</h3>
+
+                  
+                }
+            }
+           <div class="row m-0 align-items-center">
+
+            @foreach (Product product in Model.products)
+            
+            {
+                if(product.Id == item.ProductId)
+
+                {<div class="col-md-2 flex-column align-items-center">
+                    <img src=@product.Image alt="" class="img-fluid h-75 w-100 pb-2" style="filter: brightness(95%);">
+                    <h4>@product.NameEn</h4>
+
+                    </div>
+                }
+            }
+            <div class="col-md-10">
+                <h5 class="mb-2">Product Count : @item.ProductCount</h5>
+                <h5 class="mb-2">Unit Price : @item.UnitPrice</h5>
+               </div>
+        </div>
+        @*   <li>
+    @Html.DisplayFor(modelItem => item.Id)
+    </li>*@
+
+        </div>
+
+    }
+
+</div>
